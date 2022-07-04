@@ -16,5 +16,6 @@ namespace InvoiceAPI.Models
         public string State { get; set; }
         [Required(ErrorMessage = "Campo País é obrigatório")]
         public string Country { get; set; }
+        public Client Client { get; set; }
     }
 }

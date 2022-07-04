@@ -12,6 +12,7 @@ namespace InvoiceAPI.Models
         [Required(ErrorMessage = "Campo Sobrenome é obrigatório")]
         public string LastName { get; set; }
         public Address Address { get; set; }
+        [Required(ErrorMessage = "Campo EndereçoId é obrigatório")]
         public int AddressId { get; set; }
         public List<Contact> Contacts { get; set; }
     }
