@@ -5,14 +5,15 @@ namespace InvoiceAPI.Models
 {
     public class Client
     {
+        [Key]
         [Required(ErrorMessage = "Campo Id é obrigatório")]
         public int Id { get; set; }
-        [Required(ErrorMessage = "Campo Primeiro Nome é obrigatório")]
+        [Required(ErrorMessage = "Campo Primeiro FirstName é obrigatório")]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Campo Sobrenome é obrigatório")]
+        [Required(ErrorMessage = "Campo LastName é obrigatório")]
         public string LastName { get; set; }
         public Address Address { get; set; }
-        [Required(ErrorMessage = "Campo EndereçoId é obrigatório")]
+        [Required(ErrorMessage = "Campo AddressId é obrigatório")]
         public int AddressId { get; set; }
         public List<Contact> Contacts { get; set; }
     }

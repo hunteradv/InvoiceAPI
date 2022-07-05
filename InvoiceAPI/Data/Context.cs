@@ -14,9 +14,15 @@ namespace InvoiceAPI.Data
                 .HasOne(address => address.Client)
                 .WithOne(client => client.Address)
                 .HasForeignKey<Client>(c => c.AddressId);
+
+            modelBuilder.Entity<Contact>()
+                .HasOne(contact => contact.Client)
+                .WithMany(client => client.Contacts)
+                .HasForeignKey(contact => contact.ClientId);
         }
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<Address> Addresses { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
