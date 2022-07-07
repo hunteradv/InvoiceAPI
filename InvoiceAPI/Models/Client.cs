@@ -16,5 +16,6 @@ namespace InvoiceAPI.Models
         [Required(ErrorMessage = "Campo AddressId é obrigatório")]
         public int AddressId { get; set; }
         public List<Contact> Contacts { get; set; }
+        public List<Invoice> Invoices { get; set; }
     }
 }

@@ -6,9 +6,7 @@ namespace InvoiceAPI.Models
     {
         [Key]
         [Required(ErrorMessage = "Campo Id é obrigatório")]
-        public int Id { get; set; }
-        [Required(ErrorMessage = "Campo ProductId é obrigatório")]
-        public int ProductId { get; set; }
+        public int Id { get; set; }        
         [Required(ErrorMessage = "Campo Description é obrigatório")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Campo UnitValue é obrigatório")]
@@ -17,5 +15,11 @@ namespace InvoiceAPI.Models
         public int Quantity { get; set; }
         [Required(ErrorMessage = "Campo TotalItem é obrigatório")]
         public decimal TotalItem { get; set; }
+        public Invoice Invoice { get; set; }
+        [Required(ErrorMessage = "Campo InvoiceId é obrigatório")]
+        public int InvoiceId { get; set; }
+        public Product Product { get; set; }
+        [Required(ErrorMessage = "Campo ProductId é obrigatório")]
+        public int ProductId { get; set; }
     }
 }

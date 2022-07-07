@@ -1,4 +1,4 @@
-﻿namespace InvoiceAPI.Models
+﻿namespace InvoiceAPI.Enums
 {
     public enum ContactType
     {
