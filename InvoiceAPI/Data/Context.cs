@@ -64,5 +64,6 @@ namespace InvoiceAPI.Data
         public DbSet<Payment> Payments { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
+        public object Where { get; internal set; }
     }
 }
