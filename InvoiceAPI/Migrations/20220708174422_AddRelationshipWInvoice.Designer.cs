@@ -3,14 +3,16 @@ using InvoiceAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InvoiceAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20220708174422_AddRelationshipWInvoice")]
+    partial class AddRelationshipWInvoice
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,7 +118,6 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -147,11 +148,9 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalItem")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("UnitValue")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -182,7 +181,6 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -204,7 +202,6 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("UnitValue")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
