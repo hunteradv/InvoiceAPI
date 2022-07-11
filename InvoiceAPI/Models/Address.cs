@@ -18,5 +18,7 @@ namespace InvoiceAPI.Models
         [Required(ErrorMessage = "Campo Country é obrigatório")]
         public string Country { get; set; }
         public Client Client { get; set; }
+        [Required(ErrorMessage = "Campo ClientId é obrigatório")]
+        public int ClientId { get; set; }
     }
 }

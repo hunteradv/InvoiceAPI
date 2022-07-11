@@ -11,10 +11,10 @@ namespace InvoiceAPI.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //1:1 Address e Client
-            modelBuilder.Entity<Address>()
-                .HasOne(address => address.Client)
-                .WithOne(client => client.Address)
-                .HasForeignKey<Client>(c => c.AddressId);
+            modelBuilder.Entity<Client>()
+                .HasOne(client => client.Address)
+                .WithOne(address => address.Client)
+                .HasForeignKey<Address>(address => address.ClientId);
 
             //1:n Contact e CLient
             modelBuilder.Entity<Contact>()
