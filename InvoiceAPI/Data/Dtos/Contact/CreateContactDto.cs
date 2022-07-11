@@ -2,7 +2,7 @@
 using InvoiceAPI.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace InvoiceAPI.Data.Dtos.Contact
+namespace InvoiceAPI.Data.Dtos.Contacts
 {
     public class CreateContactDto
     {               

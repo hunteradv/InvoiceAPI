@@ -1,7 +1,7 @@
 ﻿using InvoiceAPI.Enums;
 using InvoiceAPI.Models;
 
-namespace InvoiceAPI.Data.Dtos.Contact
+namespace InvoiceAPI.Data.Dtos.Contacts
 {
     public class ReadContactDto
     {

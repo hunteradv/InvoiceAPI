@@ -1,6 +1,6 @@
 ﻿using InvoiceAPI.Enums;
 
-namespace InvoiceAPI.Data.Dtos.Contact
+namespace InvoiceAPI.Data.Dtos.Contacts
 {
     public class UpdateContactDto
     {

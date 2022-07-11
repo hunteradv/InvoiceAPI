@@ -1,9 +1,8 @@
 ﻿using AutoMapper;
 using InvoiceAPI.Data;
-using InvoiceAPI.Data.Dtos.Contact;
+using InvoiceAPI.Data.Dtos.Contacts;
 using InvoiceAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections;
 using System.Linq;
 
