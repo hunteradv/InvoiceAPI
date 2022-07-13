@@ -2,6 +2,7 @@
 using InvoiceAPI.Data;
 using InvoiceAPI.Data.Dtos.Clients;
 using InvoiceAPI.Models;
+using InvoiceAPI.Profiles;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace InvoiceAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult GetClientById(int id)
         {
-            var client = _context.Clients.Where(c => c.Id == id);
+            var client = _context.Clients.Where(c => c.Id == id).FirstOrDefault();
 
             if (client is null)
             {
@@ -57,7 +58,7 @@ namespace InvoiceAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateClient(int id, [FromBody] UpdateClientDto dto)
         {
-            var client = _context.Clients.Where(c => c.Id == id);
+            var client = _context.Clients.Where(c => c.Id == id).FirstOrDefault();
 
             if (client is null)
             {
@@ -75,7 +76,7 @@ namespace InvoiceAPI.Controllers
         [HttpDelete]
         public IActionResult RemoveClient(int id)
         {
-            var client = _context.Clients.Where(c => c.Id == id);
+            var client = _context.Clients.Where(c => c.Id == id).FirstOrDefault();
 
             if (client is null)
             {
