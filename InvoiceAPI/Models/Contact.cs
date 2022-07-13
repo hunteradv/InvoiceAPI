@@ -1,5 +1,6 @@
 ﻿using InvoiceAPI.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace InvoiceAPI.Models
 {
@@ -12,7 +13,8 @@ namespace InvoiceAPI.Models
         public string ContactInfo { get; set; }
         [Required(ErrorMessage = "Campo ContactType é obrigatório")]
         public ContactType ContactType { get; set; }
-        public Client Client { get; set; }
+        [JsonIgnore]
+        public virtual Client Client { get; set; }
         [Required(ErrorMessage = "Campo ClientId é obrigatório")]
         public int ClientId { get; set; }
     }

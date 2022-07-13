@@ -13,7 +13,7 @@ namespace InvoiceAPI.Models
         public decimal Value { get; set; }
         [Required(ErrorMessage = "Campo PaymentType é obrigatório")]
         public string PaymentType { get; set; }
-        public Invoice Invoice { get; set; }
+        public virtual Invoice Invoice { get; set; }
         [Required(ErrorMessage = "Campo InvoiceId é obrigatório")]
         public int InvoiceId { get; set; }
     }

@@ -8,7 +8,7 @@ namespace InvoiceAPI.Models
         [Key]
         [Required(ErrorMessage = "Campo Id é obrigatório")]
         public int Id { get; set; }        
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
         [Required(ErrorMessage = "Campo ClientId é obrigatório")]
         public int ClientId { get; set; }
         [Required(ErrorMessage = "Campo SerialNumber é obrigatório")]
@@ -17,7 +17,7 @@ namespace InvoiceAPI.Models
         public int Number { get; set; }
         [Required(ErrorMessage = "Campo Total é obrigatório")]
         public decimal Total { get; set; }
-        public List<Payment> Payments { get; set; }
-        public List<Item> Items { get; set; }
+        public virtual List<Payment> Payments { get; set; }
+        public virtual List<Item> Items { get; set; }
     }
 }

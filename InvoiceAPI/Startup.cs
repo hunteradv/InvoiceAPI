@@ -30,7 +30,7 @@ namespace InvoiceAPI
         {
             var connectionString = Configuration.GetConnectionString("InvoiceConnection");
 
-            services.AddDbContext<Context>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<Context>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

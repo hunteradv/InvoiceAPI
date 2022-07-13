@@ -12,6 +12,6 @@ namespace InvoiceAPI.Models
         public string Name { get; set; }
         [Required(ErrorMessage = "Campo UnitValue é obrigatório")]
         public decimal UnitValue { get; set; }
-        public List<Item> Items { get; set; }
+        public virtual List<Item> Items { get; set; }
     }
 }

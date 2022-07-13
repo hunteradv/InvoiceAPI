@@ -12,8 +12,8 @@ namespace InvoiceAPI.Models
         public string FirstName { get; set; }
         [Required(ErrorMessage = "Campo LastName é obrigatório")]
         public string LastName { get; set; }
-        public Address Address { get; set; }
-        public List<Contact> Contacts { get; set; }
-        public List<Invoice> Invoices { get; set; }
+        public virtual Address Address { get; set; }
+        public virtual List<Contact> Contacts { get; set; }
+        public virtual List<Invoice> Invoices { get; set; }
     }
 }

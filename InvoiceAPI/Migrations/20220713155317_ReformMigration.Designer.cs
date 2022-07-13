@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceAPI.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20220708174422_AddRelationshipWInvoice")]
-    partial class AddRelationshipWInvoice
+    [Migration("20220713155317_ReformMigration")]
+    partial class ReformMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace InvoiceAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -48,6 +51,9 @@ namespace InvoiceAPI.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId")
+                        .IsUnique();
+
                     b.ToTable("Addresses");
                 });
 
@@ -58,9 +64,6 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("AddressId")
-                        .HasColumnType("int");
-
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -70,9 +73,6 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AddressId")
-                        .IsUnique();
 
                     b.ToTable("Clients");
                 });
@@ -118,6 +118,7 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -148,9 +149,11 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalItem")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("UnitValue")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -181,6 +184,7 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -202,6 +206,7 @@ namespace InvoiceAPI.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("UnitValue")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -209,15 +214,15 @@ namespace InvoiceAPI.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("InvoiceAPI.Models.Client", b =>
+            modelBuilder.Entity("InvoiceAPI.Models.Address", b =>
                 {
-                    b.HasOne("InvoiceAPI.Models.Address", "Address")
-                        .WithOne("Client")
-                        .HasForeignKey("InvoiceAPI.Models.Client", "AddressId")
+                    b.HasOne("InvoiceAPI.Models.Client", "Client")
+                        .WithOne("Address")
+                        .HasForeignKey("InvoiceAPI.Models.Address", "ClientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Address");
+                    b.Navigation("Client");
                 });
 
             modelBuilder.Entity("InvoiceAPI.Models.Contact", b =>
@@ -272,13 +277,10 @@ namespace InvoiceAPI.Migrations
                     b.Navigation("Invoice");
                 });
 
-            modelBuilder.Entity("InvoiceAPI.Models.Address", b =>
-                {
-                    b.Navigation("Client");
-                });
-
             modelBuilder.Entity("InvoiceAPI.Models.Client", b =>
                 {
+                    b.Navigation("Address");
+
                     b.Navigation("Contacts");
 
                     b.Navigation("Invoices");

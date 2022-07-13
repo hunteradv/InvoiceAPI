@@ -15,10 +15,10 @@ namespace InvoiceAPI.Models
         public int Quantity { get; set; }
         [Required(ErrorMessage = "Campo TotalItem é obrigatório")]
         public decimal TotalItem { get; set; }
-        public Invoice Invoice { get; set; }
+        public virtual Invoice Invoice { get; set; }
         [Required(ErrorMessage = "Campo InvoiceId é obrigatório")]
         public int InvoiceId { get; set; }
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
         [Required(ErrorMessage = "Campo ProductId é obrigatório")]
         public int ProductId { get; set; }
     }

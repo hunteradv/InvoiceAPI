@@ -73,7 +73,7 @@ namespace InvoiceAPI.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public IActionResult RemoveClient(int id)
         {
             var client = _context.Clients.Where(c => c.Id == id).FirstOrDefault();

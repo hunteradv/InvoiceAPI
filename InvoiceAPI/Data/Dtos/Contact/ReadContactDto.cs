@@ -1,5 +1,6 @@
 ﻿using InvoiceAPI.Enums;
 using InvoiceAPI.Models;
+using System;
 
 namespace InvoiceAPI.Data.Dtos.Contacts
 {
@@ -8,6 +9,6 @@ namespace InvoiceAPI.Data.Dtos.Contacts
         public int Id { get; set; }
         public string ContactInfo { get; set; }
         public ContactType ContactType { get; set; }
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
     }
 }
