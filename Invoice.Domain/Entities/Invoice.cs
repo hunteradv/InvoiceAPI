@@ -5,12 +5,12 @@ namespace Invoice.Domain.Entities
 {
     public class Invoice : Base
     {        
-        public virtual Client Client { get; set; }        
-        public int ClientId { get; set; }        
-        public int SerialNumber { get; set; }        
-        public int Number { get; set; }        
-        public decimal Total { get; set; }
-        public virtual List<Payment> Payments { get; set; }
-        public virtual List<Item> Items { get; set; }
+        public virtual Client Client { get; private set; }        
+        public int ClientId { get; private set; }        
+        public int SerialNumber { get; private set; }        
+        public int Number { get; private set; }        
+        public decimal Total { get; private set; }
+        public virtual List<Payment> Payments { get; private set; }
+        public virtual List<Item> Items { get; private set; }
     }
 }

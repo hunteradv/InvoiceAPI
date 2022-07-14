@@ -5,8 +5,8 @@ namespace Invoice.Domain.Entities
 {
     public class Product : Base
     {                
-        public string Name { get; set; }       
-        public decimal UnitValue { get; set; }
-        public virtual List<Item> Items { get; set; }
+        public string Name { get; private set; }       
+        public decimal UnitValue { get; private set; }
+        public virtual List<Item> Items { get; private set; }
     }
 }

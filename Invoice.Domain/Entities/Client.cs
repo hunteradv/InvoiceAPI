@@ -5,10 +5,10 @@ namespace Invoice.Domain.Entities
 {
     public class Client : Base
     {                
-        public string FirstName { get; set; }        
-        public string LastName { get; set; }
-        public virtual Address Address { get; set; }
-        public virtual List<Contact> Contacts { get; set; }
-        public virtual List<Invoice> Invoices { get; set; }
+        public string FirstName { get; private set; }        
+        public string LastName { get; private set; }
+        public virtual Address Address { get; private set; }
+        public virtual List<Contact> Contacts { get; private set; }
+        public virtual List<Invoice> Invoices { get; private set; }
     }
 }
