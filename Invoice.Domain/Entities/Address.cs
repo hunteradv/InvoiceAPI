@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using Invoice.Domain.Validators;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Invoice.Domain.Entities
 {
     public class Address : Base
     {
+        //propriedades
         public int Number { get; private set; }        
         public string District { get; private set; }        
         public string City { get; private set; }        
@@ -28,6 +31,7 @@ namespace Invoice.Domain.Entities
             _errors = new List<string>();
         }
 
+        //comportamentos
         public void ChangeNumber(int number)
         {
             Number = number;
@@ -64,8 +68,22 @@ namespace Invoice.Domain.Entities
             Validate();
         }
 
+        //autovalida
         public override bool Validate()
         {
+            var validator = new AddressValidator();
+            var validation = validator.Validate(this);
+
+            if (!validation.IsValid)
+            {
+                foreach (var error in validation.Errors)
+                {
+                    _errors.Add(error.ErrorMessage);
+
+                    throw new Exception("Alguns campos estão inválidos, por favor corrija-os!" + _errors[0]);
+                }                
+            }
+
             return true;
         }
     }
