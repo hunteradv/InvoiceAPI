@@ -19,14 +19,13 @@ namespace Invoice.Domain.Entities
         //EF
         protected Address(){}
 
-        public Address(int number, string district, string city, string state, string country, Client client, int clientId)
+        public Address(int number, string district, string city, string state, string country, int clientId)
         {
             Number = number;
             District = district;
             City = city;
             State = state;
             Country = country;
-            Client = client;
             ClientId = clientId;
             _errors = new List<string>();
         }

@@ -40,7 +40,7 @@ namespace Invoice.Domain.Entities
             Validate();
         }
 
-        public bool Validate()
+        public override bool Validate()
         {
             var validator = new ClientValidator();
             var validation = validator.Validate(this);

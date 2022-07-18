@@ -9,6 +9,11 @@ namespace Invoice.Domain.Entities
         public virtual Client Client { get; private set; }        
         public int ClientId { get; private set; }
 
+        public Contact()
+        {
+
+        }
+
         public Contact(string contactInfo, ContactType contactType, int clientId)
         {
             ContactInfo = contactInfo;
@@ -16,6 +21,25 @@ namespace Invoice.Domain.Entities
             ClientId = clientId;
         }
 
-        
+        public void ChangeContactInfo(string contactInfo)
+        {
+            ContactInfo = contactInfo;
+        }
+
+        public void ChangeContactType(ContactType contactType)
+        {
+            ContactType = contactType;
+        }
+
+        public void ChanceClientId(int clientId)
+        {
+            ClientId = clientId;
+        }
+
+
+        public override bool Validate()
+        {
+            return true;
+        }
     }
 }
