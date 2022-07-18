@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using InvoiceApi.Domain.Validators;
+using System;
+using System.Collections.Generic;
 
 namespace InvoiceApi.Domain.Entities
 {
@@ -29,7 +31,20 @@ namespace InvoiceApi.Domain.Entities
 
         public override bool Validate()
         {
-            throw new System.NotImplementedException();
+            var validator = new InvoiceValidator();
+            var validation = validator.Validate(this);
+
+            if (!validation.IsValid)
+            {
+                foreach (var error in validation.Errors)
+                {
+                    _errors.Add(error.ErrorMessage);
+
+                    throw new Exception("Alguns campos estão inválidos, por favor corrija-os!" + _errors[0]);
+                }
+            }
+
+            return true;
         }
     }
 }
