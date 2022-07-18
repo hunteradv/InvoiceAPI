@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Invoice.Domain.Entities
+namespace InvoiceApi.Domain.Entities
 {
     public abstract class Base
     {

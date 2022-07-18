@@ -1,12 +1,7 @@
 ﻿using FluentValidation;
-using Invoice.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using InvoiceApi.Domain.Entities;
 
-namespace Invoice.Domain.Validators
+namespace InvoiceApi.Domain.Validators
 {
     public class AddressValidator : AbstractValidator<Address>
     {

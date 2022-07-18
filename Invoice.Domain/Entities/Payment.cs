@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Invoice.Domain.Entities
+namespace InvoiceApi.Domain.Entities
 {
     public class Payment : Base
     {               

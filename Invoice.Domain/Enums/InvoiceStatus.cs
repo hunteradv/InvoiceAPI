@@ -1,4 +1,4 @@
-﻿namespace Invoice.Domain.Enums
+﻿namespace InvoiceApi.Domain.Enums
 {
     public class InvoiceStatus
     {

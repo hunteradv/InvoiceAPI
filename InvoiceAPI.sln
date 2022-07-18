@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAPI", "InvoiceAPI\InvoiceAPI.csproj", "{DE2D667F-2702-40A1-A33D-B8FF8595C48B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceApi", "InvoiceAPI\InvoiceApi.csproj", "{DE2D667F-2702-40A1-A33D-B8FF8595C48B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{AC3515B7-4244-4D81-8152-CF82C2334647}"
 EndProject
@@ -11,13 +11,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceAPI.Tests", "Invoice
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F3F88CA2-AE3B-4A87-9000-F07B95CD01DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoice.Domain", "Invoice.Domain\Invoice.Domain.csproj", "{1A52C112-79D7-4792-85F9-EA3CEC713437}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceApi.Domain", "Invoice.Domain\InvoiceApi.Domain.csproj", "{1A52C112-79D7-4792-85F9-EA3CEC713437}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoice.Services", "Invoice.Services\Invoice.Services.csproj", "{54732185-D171-4DD6-8C57-C855ABC5708C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceApi.Services", "Invoice.Services\InvoiceApi.Services.csproj", "{54732185-D171-4DD6-8C57-C855ABC5708C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoice.Infrastructure", "Invoice.Infrastructure\Invoice.Infrastructure.csproj", "{177021AE-99BF-4AC5-9EAB-90BBFCF04F59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceApi.Infrastructure", "Invoice.Infrastructure\InvoiceApi.Infrastructure.csproj", "{177021AE-99BF-4AC5-9EAB-90BBFCF04F59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Invoice.Core", "Invoice.Core\Invoice.Core.csproj", "{4F9F2FBD-6F68-49CE-822F-C1B45354573E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InvoiceApi.Core", "Invoice.Core\InvoiceApi.Core.csproj", "{4F9F2FBD-6F68-49CE-822F-C1B45354573E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Invoice.Domain.Entities
+namespace InvoiceApi.Domain.Entities
 {
     public class Product : Base
     {                

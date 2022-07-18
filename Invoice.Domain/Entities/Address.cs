@@ -1,9 +1,8 @@
-﻿using Invoice.Domain.Validators;
+﻿using InvoiceApi.Domain.Validators;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
-namespace Invoice.Domain.Entities
+namespace InvoiceApi.Domain.Entities
 {
     public class Address : Base
     {

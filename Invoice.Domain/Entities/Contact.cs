@@ -1,6 +1,9 @@
-﻿using Invoice.Domain.Enums;
+﻿using FluentValidation;
+using InvoiceApi.Domain.Enums;
+using InvoiceApi.Domain.Validators;
+using System;
 
-namespace Invoice.Domain.Entities
+namespace InvoiceApi.Domain.Entities
 {
     public class Contact : Base
     {
@@ -39,6 +42,19 @@ namespace Invoice.Domain.Entities
 
         public override bool Validate()
         {
+            var validator = new ContactValidator();
+            var validation = validator.Validate(this);
+
+            if (!validation.IsValid)
+            {
+                foreach (var error in validation.Errors)
+                {
+                    _errors.Add(error.ErrorMessage);
+
+                    throw new Exception("Alguns campos estão inválidos, por favor corrija-os!" + _errors[0]);
+                }
+            }
+
             return true;
         }
     }
