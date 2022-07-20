@@ -33,12 +33,11 @@ namespace InvoiceApi.Infrastructure.Repositories
         public async Task<List<Contact>> SearchByContactInfo(string contactInfo)
         {
             var contacts = await _context.Contacts
-                .Where(x => x.ContactInfo.ToLower().Contains(contactInfo.ToLower())
+                .Where(x => x.ContactInfo.ToLower().Contains(contactInfo.ToLower()))
                 .AsNoTracking()
-                .ToListAsync());
+                .ToListAsync();
 
-            return contacts;
-                
+            return contacts;               
         }
     }
 }
