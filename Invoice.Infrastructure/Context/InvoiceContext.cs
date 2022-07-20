@@ -1,11 +1,11 @@
-﻿using InvoiceAPI.Models;
+﻿using InvoiceApi.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace InvoiceAPI.Data
+namespace InvoiceApi.Infrastructure.Context
 {
-    public class Context : DbContext
+    public class InvoiceContext : DbContext
     {
-        public Context(DbContextOptions<Context> options ) : base(options) { }
+        public InvoiceContext(DbContextOptions<InvoiceContext> options ) : base(options) { }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
