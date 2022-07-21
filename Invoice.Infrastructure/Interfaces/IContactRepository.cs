@@ -10,7 +10,7 @@ namespace InvoiceApi.Infrastructure.Interfaces
 {
     public interface IContactRepository : IBaseRepository<Contact>
     {
-        Task<Contact> GetByContactType(ContactType contactType);
+        Task<List<Contact>> GetByContactType(ContactType contactType);
         Task<List<Contact>> SearchByContactInfo(string contactInfo);
     }
 }

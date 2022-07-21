@@ -35,6 +35,13 @@ namespace InvoiceApi.Domain.Validators
                 .NotNull()
                 .WithMessage("O número não pode ser nulo");
 
+            RuleFor(x => x.Status)
+                .NotEmpty()
+                .WithMessage("O status não pode ser vazio")
+
+                .NotNull()
+                .WithMessage("O status não pode ser nulo");
+
             RuleFor(x => x.Total)
                 .NotEmpty()
                 .WithMessage("O total não pode ser vazio")

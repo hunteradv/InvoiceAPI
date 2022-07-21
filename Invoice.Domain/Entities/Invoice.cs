@@ -1,4 +1,5 @@
-﻿using InvoiceApi.Domain.Validators;
+﻿using InvoiceApi.Domain.Enums;
+using InvoiceApi.Domain.Validators;
 using System;
 using System.Collections.Generic;
 
@@ -10,7 +11,8 @@ namespace InvoiceApi.Domain.Entities
         public virtual Client Client { get; private set; }        
         public int ClientId { get; private set; }        
         public int SerialNumber { get; private set; }        
-        public int Number { get; private set; }        
+        public int Number { get; private set; }
+        public InvoiceStatus Status { get; private set; }
         public decimal Total { get; private set; }
         public virtual List<Payment> Payments { get; private set; }
         public virtual List<Item> Items { get; private set; }
@@ -21,12 +23,13 @@ namespace InvoiceApi.Domain.Entities
 
         }
 
-        public Invoice(int clientId, int serialNumber, int number, decimal total)
+        public Invoice(int clientId, int serialNumber, int number, decimal total, InvoiceStatus status)
         {
             ClientId = clientId;
             SerialNumber = serialNumber;
             Number = number;
-            Total = total;            
+            Total = total;
+            Status = status;
         }
 
         public override bool Validate()

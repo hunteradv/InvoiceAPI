@@ -20,14 +20,14 @@ namespace InvoiceApi.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<Contact> GetByContactType(ContactType contactType)
+        public async Task<List<Contact>> GetByContactType(ContactType contactType)
         {
-            var contact = await _context.Contacts
+            var contacts = await _context.Contacts
                 .Where(x => x.ContactType == contactType)
                 .AsNoTracking()
                 .ToListAsync();
 
-            return contact.FirstOrDefault();
+            return contacts;
         }
 
         public async Task<List<Contact>> SearchByContactInfo(string contactInfo)
