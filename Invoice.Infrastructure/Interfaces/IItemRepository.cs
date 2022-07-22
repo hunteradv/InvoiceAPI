@@ -9,7 +9,7 @@ namespace InvoiceApi.Infrastructure.Interfaces
 {
     public interface IItemRepository : IBaseRepository<Item>
     {
-        Task<Item> SearchByTotalItem(decimal totalItem);
-        Task<Item> SearchByDescription(string description);
+        Task<List<Item>> SearchByDescription(string description);
+        Task<List<Item>> SearchByTotalItem(decimal totalItem);
     }
 }
