@@ -9,7 +9,7 @@ namespace InvoiceApi.Infrastructure.Interfaces
 {
     public interface IProductRepository : IBaseRepository<Product>
     {
-        Task<Product> SearchByName(string name);
-        Task<Product> SearchByUnitValue(decimal unitValue);
+        Task<List<Product>> SearchByName(string name);
+        Task<List<Product>> SearchByUnitValue(decimal unitValue);
     }
 }
