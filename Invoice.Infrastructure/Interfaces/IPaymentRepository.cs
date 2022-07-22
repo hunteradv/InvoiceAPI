@@ -9,8 +9,8 @@ namespace InvoiceApi.Infrastructure.Interfaces
 {
     public interface IPaymentRepository : IBaseRepository<Payment>
     {
-        Task<Payment> SearchByDescription(string description);
-        Task<Payment> SearchByValue(decimal value);
-        Task<Payment> SearchByPaymentType(string paymentType);
+        Task<List<Payment>> SearchByDescription(string description);
+        Task<List<Payment>> SearchByValue(decimal value);
+        Task<List<Payment>> SearchByPaymentType(string paymentType);
     }
 }
