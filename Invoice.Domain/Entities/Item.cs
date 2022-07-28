@@ -12,9 +12,9 @@ namespace InvoiceApi.Domain.Entities
         public int Quantity { get; private set; }        
         public decimal TotalItem { get; private set; }
         public virtual Invoice Invoice { get; private set; }        
-        public int InvoiceId { get; private set; }
+        public long InvoiceId { get; private set; }
         public virtual Product Product { get; private set; }        
-        public int ProductId { get; private set; }
+        public long ProductId { get; private set; }
 
         //EF
         public Item()

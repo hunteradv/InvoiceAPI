@@ -7,9 +7,8 @@ namespace InvoiceApi.Domain.Entities
 {
     public class Invoice : Base
     {
-
         public virtual Client Client { get; private set; }        
-        public int ClientId { get; private set; }        
+        public long ClientId { get; private set; }        
         public int SerialNumber { get; private set; }        
         public int Number { get; private set; }
         public InvoiceStatus Status { get; private set; }

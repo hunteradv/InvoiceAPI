@@ -11,7 +11,7 @@ namespace InvoiceApi.Domain.Entities
         public decimal Value { get; private set; }        
         public string PaymentType { get; private set; }
         public virtual Invoice Invoice { get; private set; }        
-        public int InvoiceId { get; private set; }
+        public long InvoiceId { get; private set; }
 
         public Payment()
         {

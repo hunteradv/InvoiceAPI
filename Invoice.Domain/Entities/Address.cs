@@ -13,7 +13,7 @@ namespace InvoiceApi.Domain.Entities
         public string State { get; private set; }        
         public string Country { get; private set; }
         public virtual Client Client { get; private set; }        
-        public int ClientId { get; private set; }
+        public long ClientId { get; private set; }
 
         //EF
         protected Address(){}

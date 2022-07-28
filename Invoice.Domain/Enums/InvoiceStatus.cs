@@ -1,6 +1,9 @@
 ﻿namespace InvoiceApi.Domain.Enums
 {
-    public class InvoiceStatus
+    public enum InvoiceStatus
     {
+        Error,
+        Processing,
+        Authorized
     }
 }
