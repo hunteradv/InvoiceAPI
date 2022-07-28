@@ -24,8 +24,8 @@ namespace InvoiceApi.Domain.Validators
                 .MinimumLength(3)
                 .WithMessage("O contato deve ter no mínimo 3 caracteres")
                 
-                .MaximumLength(30)
-                .WithMessage("O contato deve ter no mínimo 3 caracteres");
+                .MaximumLength(80)
+                .WithMessage("O contato deve ter no máximo 80 caracteres");
 
             RuleFor(x => x.ContactType)
                 .NotEmpty()
