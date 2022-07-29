@@ -39,7 +39,8 @@ namespace InvoiceApi.Infrastructure.Mappings
             builder.Property(x => x.Total)
                 .IsRequired()
                 .HasColumnName("Total")
-                .HasColumnType("DECIMAL(18,2)");
+                .HasColumnType("DECIMAL(18,2)")
+                .HasPrecision(18,2);
         }
     }
 }

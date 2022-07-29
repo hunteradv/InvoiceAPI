@@ -30,7 +30,8 @@ namespace InvoiceApi.Infrastructure.Mappings
             builder.Property(x => x.Value)
                 .IsRequired()
                 .HasColumnName("Value")
-                .HasColumnType("DECIMAL(18,2)");
+                .HasColumnType("DECIMAL(18,2)")
+                .HasPrecision(18,2);
 
             builder.Property(x => x.PaymentType)
                 .IsRequired()

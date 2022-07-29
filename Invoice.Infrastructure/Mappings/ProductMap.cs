@@ -30,7 +30,8 @@ namespace InvoiceApi.Infrastructure.Mappings
             builder.Property(x => x.UnitValue)
                 .IsRequired()
                 .HasColumnName("UnitValue")
-                .HasColumnType("DECIMAL(18,2)");
+                .HasColumnType("DECIMAL(18,2)")
+                .HasPrecision(18,2);
         }
     }
 }

@@ -58,14 +58,7 @@ namespace InvoiceApi.Infrastructure.Context
             builder.Entity<Item>()
                 .HasOne(item => item.Invoice)
                 .WithMany(invoice => invoice.Items)
-                .HasForeignKey(item => item.InvoiceId);
-
-            //precision
-            builder.Entity<Item>().Property(item => item.TotalItem).HasPrecision(18, 2);
-            builder.Entity<Item>().Property(item => item.UnitValue).HasPrecision(18, 2);
-            builder.Entity<Payment>().Property(payment=> payment.Value).HasPrecision(18, 2);
-            builder.Entity<Invoice>().Property(invoice => invoice.Total).HasPrecision(18, 2);
-            builder.Entity<Product>().Property(product => product.UnitValue).HasPrecision(18, 2);            
+                .HasForeignKey(item => item.InvoiceId);         
         }
 
         public virtual DbSet<Client> Clients { get; set; }
