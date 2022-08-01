@@ -1,4 +1,5 @@
-﻿using InvoiceApi.Domain.Validators;
+﻿using InvoiceApi.Core.Exceptions;
+using InvoiceApi.Domain.Validators;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -43,7 +44,7 @@ namespace InvoiceApi.Domain.Entities
                 {
                     _errors.Add(error.ErrorMessage);
 
-                    throw new Exception("Alguns campos estão inválidos, por favor corrija-os!" + _errors[0]);
+                    throw new DomainException("Alguns campos estão inválidos, por favor corrija-os!", _errors);
                 }
             }
 
