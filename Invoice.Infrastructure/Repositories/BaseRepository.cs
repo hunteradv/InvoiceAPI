@@ -27,7 +27,7 @@ namespace InvoiceApi.Infrastructure.Repositories
             return obj;
         }
 
-        public virtual async Task Delete(long id)
+        public virtual async Task Remove(long id)
         {
             var obj = await Get(id);
 

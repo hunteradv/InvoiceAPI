@@ -28,6 +28,8 @@ namespace InvoiceApi.Domain.Entities
             Country = country;
             ClientId = clientId;
             _errors = new List<string>();
+
+            Validate();
         }
 
         //comportamentos
