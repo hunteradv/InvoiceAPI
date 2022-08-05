@@ -29,7 +29,7 @@ namespace InvoiceApi.Services.Services
 
             if (addressExists != null)
             {
-                throw new DomainException("Não existe nenhum endereço com o id informado!");
+                throw new DomainException("Já existe um endereço com o id informado!");
             }
 
             var address = _mapper.Map<Address>(addressDTO);

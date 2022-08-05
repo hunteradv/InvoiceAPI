@@ -15,7 +15,6 @@ namespace InvoiceApi.Services.DTO
         public string City { get; set; }
         public string State { get; set; }
         public string Country { get; set; }
-        public virtual Client Client { get; set; }
         public long ClientId { get; set; }
 
         public AddressDTO()
