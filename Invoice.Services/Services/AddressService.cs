@@ -85,16 +85,16 @@ namespace InvoiceApi.Services.Services
 
         public async Task<List<AddressDTO>> SearchByCountry(string country)
         {
-            var allCountries = await _addressRepository.SearchByCountry(country);
+            var allAddresses = await _addressRepository.SearchByCountry(country);
 
-            return _mapper.Map<List<AddressDTO>>(allCountries);
+            return _mapper.Map<List<AddressDTO>>(allAddresses);
         }
 
         public async Task<List<AddressDTO>> SearchByState(string state)
         {
-            var allStates = await _addressRepository.SearchByState(state);
+            var allAddresses = await _addressRepository.SearchByState(state);
 
-            return _mapper.Map<List<AddressDTO>>(allStates);
+            return _mapper.Map<List<AddressDTO>>(allAddresses);
         }
     }
 }

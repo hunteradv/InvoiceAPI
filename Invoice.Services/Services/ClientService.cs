@@ -71,23 +71,23 @@ namespace InvoiceApi.Services.Services
 
         public async Task<List<ClientDTO>> Get()
         {
-            var client = await _clientRepository.Get();
+            var allClients = await _clientRepository.Get();
 
-            return _mapper.Map<List<ClientDTO>>(client);
+            return _mapper.Map<List<ClientDTO>>(allClients);
         }
      
         public async Task<List<ClientDTO>> SearchByFirstName(string firstName)
         {
-            var client = await _clientRepository.SearchByFirstName(firstName);
+            var allClients = await _clientRepository.SearchByFirstName(firstName);
 
-            return _mapper.Map<List<ClientDTO>>(client);
+            return _mapper.Map<List<ClientDTO>>(allClients);
         }
 
         public async Task<List<ClientDTO>> SearchByLastName(string lastName)
         {
-            var client = await _clientRepository.SearchByLastName(lastName);
+            var allClients = await _clientRepository.SearchByLastName(lastName);
 
-            return _mapper.Map<List<ClientDTO>>(client);
+            return _mapper.Map<List<ClientDTO>>(allClients);
         }        
     }
 }
