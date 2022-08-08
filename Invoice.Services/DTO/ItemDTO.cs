@@ -8,6 +8,7 @@ namespace InvoiceApi.Services.DTO
 {
     public class ItemDTO
     {
+        public int Id { get; set; }
         public string Description { get; set; }
         public decimal UnitValue { get; set; }
         public int Quantity { get; set; }
@@ -18,8 +19,9 @@ namespace InvoiceApi.Services.DTO
         public ItemDTO()
         {}
 
-        public ItemDTO(string description, decimal unitValue, int quantity, decimal totalItem, long invoiceId, long productId)
+        public ItemDTO(int id, string description, decimal unitValue, int quantity, decimal totalItem, long invoiceId, long productId)
         {
+            Id = id;
             Description = description;
             UnitValue = unitValue;
             Quantity = quantity;
