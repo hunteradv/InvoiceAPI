@@ -8,7 +8,7 @@ namespace InvoiceApi.Services.DTO
 {
     public class PaymentDTO
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Description { get; set; }
         public decimal Value { get; set; }
         public string PaymentType { get; set; }       
@@ -17,7 +17,7 @@ namespace InvoiceApi.Services.DTO
         public PaymentDTO()
         {}
 
-        public PaymentDTO(int id, string description, decimal value, string paymentType, long invoiceId)
+        public PaymentDTO(long id, string description, decimal value, string paymentType, long invoiceId)
         {
             Id = id;
             Description = description;
