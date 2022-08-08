@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 
 namespace InvoiceApi.Services.DTO
 {
-    public class ContactDTO
+    public class InvoiceDTO
     {
         public long Id { get; set; }
-        public string ContactInfo { get; set; }
-        public ContactType ContactType { get; set; }  
         public long ClientId { get; set; }
+        public int SerialNumber { get; set; }
+        public int Number { get; set; }
+        public InvoiceStatus Status { get; set; }
+        public decimal Total { get; set; }
     }
 }

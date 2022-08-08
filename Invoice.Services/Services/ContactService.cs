@@ -36,7 +36,7 @@ namespace InvoiceApi.Services.Services
         {
             var contactExists = await _contactRepository.Get(contactDTO.Id);
 
-            if (contactExists != null)
+            if (contactExists == null)
             {
                 throw new DomainException("Não existe um contato com o id informado!");
             }

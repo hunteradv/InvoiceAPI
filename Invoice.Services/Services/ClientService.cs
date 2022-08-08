@@ -44,7 +44,7 @@ namespace InvoiceApi.Services.Services
         {
             var clientExists = await _clientRepository.Get(clientDTO.Id);
 
-            if (clientExists != null)
+            if (clientExists == null)
             {
                 throw new DomainException("Não existe um cliente com o id informado!");
             }

@@ -44,7 +44,7 @@ namespace InvoiceApi.Services.Services
         {
             var addressExists = await _addressRepository.Get(addressDTO.Id);
 
-            if (addressExists != null)
+            if (addressExists == null)
             {
                 throw new DomainException("Não existe nenhum endereço com o id informado!");
             }
