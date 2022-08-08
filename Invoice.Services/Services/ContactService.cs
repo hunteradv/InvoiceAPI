@@ -18,6 +18,12 @@ namespace InvoiceApi.Services.Services
         private readonly IMapper _mapper;
         private readonly ContactRepository _contactRepository;
 
+        public ContactService(IMapper mapper, ContactRepository contactRepository)
+        {
+            _mapper = mapper;
+            _contactRepository = contactRepository;
+        }
+
         public async Task<ContactDTO> Create(ContactDTO contactDTO)
         {
             var contactExists = await _contactRepository.Get(contactDTO.Id);

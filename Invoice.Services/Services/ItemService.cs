@@ -17,6 +17,12 @@ namespace InvoiceApi.Services.Services
         private readonly IMapper _mapper;
         private readonly ItemRepository _itemRepository;
 
+        public ItemService(IMapper mapper, ItemRepository itemRepository)
+        {
+            _mapper = mapper;
+            _itemRepository = itemRepository;
+        }
+
         public async Task<ItemDTO> Create(ItemDTO itemDTO)
         {
             var itemExists = await _itemRepository.Get(itemDTO.Id);

@@ -15,7 +15,13 @@ namespace InvoiceApi.Services.Services
     public class PaymentService : IPaymentService
     {
         private readonly IMapper _mapper;
-        private readonly PaymentRepository _paymentRepository; 
+        private readonly PaymentRepository _paymentRepository;
+
+        public PaymentService(IMapper mapper, PaymentRepository paymentRepository)
+        {
+            _mapper = mapper;
+            _paymentRepository = paymentRepository;
+        }
 
         public async Task<PaymentDTO> Create(PaymentDTO paymentDTO)
         {
