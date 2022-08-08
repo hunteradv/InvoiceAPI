@@ -13,5 +13,16 @@ namespace InvoiceApi.Services.DTO
         public string ContactInfo { get; set; }
         public ContactType ContactType { get; set; }  
         public long ClientId { get; set; }
+
+        public ContactDTO()
+        {}
+
+        public ContactDTO(long id, string contactInfo, ContactType contactType, long clientId)
+        {
+            Id = id;
+            ContactInfo = contactInfo;
+            ContactType = contactType;
+            ClientId = clientId;
+        }
     }
 }

@@ -15,5 +15,18 @@ namespace InvoiceApi.Services.DTO
         public int Number { get; set; }
         public InvoiceStatus Status { get; set; }
         public decimal Total { get; set; }
+
+        public InvoiceDTO()
+        {}
+
+        public InvoiceDTO(long id, long clientId, int serialNumber, int number, InvoiceStatus status, decimal total)
+        {
+            Id = id;
+            ClientId = clientId;
+            SerialNumber = serialNumber;
+            Number = number;
+            Status = status;
+            Total = total;
+        }
     }
 }
