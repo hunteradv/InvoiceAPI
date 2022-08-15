@@ -13,10 +13,7 @@ namespace InvoiceApi.Domain.Entities
         public virtual Client Client { get; private set; }        
         public long ClientId { get; private set; }
 
-        public Contact()
-        {
-
-        }
+        public Contact(){}
 
         public Contact(string contactInfo, ContactType contactType, int clientId)
         {

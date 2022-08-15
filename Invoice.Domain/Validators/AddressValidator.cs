@@ -16,10 +16,10 @@ namespace InvoiceApi.Domain.Validators
 
             RuleFor(x => x.Number)
                 .NotNull()
-                .WithMessage("O nome não pode ser nulo")
+                .WithMessage("O número não pode ser nulo")
 
                 .NotEmpty()
-                .WithMessage("O nome não pode ser vazio");
+                .WithMessage("O número não pode ser vazio");
 
             RuleFor(x => x.District)
                 .NotNull()
