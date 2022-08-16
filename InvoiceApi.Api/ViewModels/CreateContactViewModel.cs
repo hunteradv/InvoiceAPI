@@ -12,7 +12,7 @@ namespace InvoiceApi.Api.ViewModels
         public string ContactInfo { get; set; }
 
         [Required(ErrorMessage = "O tipo do contato não pode ser nulo")]
-        public ContactType ContactType { get; set; }
+        public int ContactType { get; set; }
 
         [Required(ErrorMessage = "O id do cliente não pode ser nulo")]
         public long ClientId { get; set; }
