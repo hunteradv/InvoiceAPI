@@ -2,6 +2,7 @@
 using InvoiceApi.Core.Exceptions;
 using InvoiceApi.Domain.Entities;
 using InvoiceApi.Domain.Enums;
+using InvoiceApi.Infrastructure.Interfaces;
 using InvoiceApi.Infrastructure.Repositories;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
@@ -16,9 +17,9 @@ namespace InvoiceApi.Services.Services
     public class ContactService : IContactService
     {
         private readonly IMapper _mapper;
-        private readonly ContactRepository _contactRepository;
+        private readonly IContactRepository _contactRepository;
 
-        public ContactService(IMapper mapper, ContactRepository contactRepository)
+        public ContactService(IMapper mapper, IContactRepository contactRepository)
         {
             _mapper = mapper;
             _contactRepository = contactRepository;

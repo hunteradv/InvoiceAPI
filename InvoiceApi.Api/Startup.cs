@@ -1,7 +1,17 @@
+using AutoMapper;
+using InvoiceApi.Api.ViewModels;
+using InvoiceApi.Domain.Entities;
+using InvoiceApi.Infrastructure.Context;
+using InvoiceApi.Infrastructure.Interfaces;
+using InvoiceApi.Infrastructure.Repositories;
+using InvoiceApi.Services.DTO;
+using InvoiceApi.Services.Interfaces;
+using InvoiceApi.Services.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,8 +36,32 @@ namespace InvoiceApi.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
             services.AddControllers();
+
+            #region AutoMapper
+
+            var autoMapperConfig = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Contact, ContactDTO>().ReverseMap();
+                cfg.CreateMap<CreateContactViewModel, ContactDTO>().ReverseMap();
+            });
+
+            services.AddSingleton(autoMapperConfig.CreateMapper());
+
+            #endregion
+
+
+            #region DI
+
+            services.AddSingleton(d => Configuration);
+            services.AddDbContext<InvoiceContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:CONTACT_INVOICE"]), ServiceLifetime.Transient);
+
+            services.AddScoped<IContactService, ContactService>();
+            services.AddScoped<IContactRepository, ContactRepository>();
+                
+
+            #endregion
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "InvoiceApi.Api", Version = "v1" });
