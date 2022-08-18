@@ -44,6 +44,8 @@ namespace InvoiceApi.Api
             {
                 cfg.CreateMap<Contact, ContactDTO>().ReverseMap();
                 cfg.CreateMap<CreateContactViewModel, ContactDTO>().ReverseMap();
+                cfg.CreateMap<Client, ClientDTO>().ReverseMap();
+                cfg.CreateMap<CreateClientViewModel, ClientDTO>();
             });
 
             services.AddSingleton(autoMapperConfig.CreateMapper());
