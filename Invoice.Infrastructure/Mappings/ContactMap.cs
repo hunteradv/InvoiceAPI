@@ -13,7 +13,7 @@ namespace InvoiceApi.Infrastructure.Mappings
     {
         public void Configure(EntityTypeBuilder<Contact> builder)
         {
-            builder.ToTable("Contact");
+            builder.ToTable("Contacts");
 
             builder.HasKey(x => x.Id);
 
@@ -30,7 +30,7 @@ namespace InvoiceApi.Infrastructure.Mappings
             builder.Property(x => x.ContactType)
                 .IsRequired()
                 .HasColumnName("ContactType")
-                .HasColumnType("INT");
+                .HasColumnType("VARCHAR(30)");
 
             builder.Property(x => x.ClientId)
                 .IsRequired()
