@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvoiceApi.Infrastructure.Migrations
 {
     [DbContext(typeof(InvoiceContext))]
-    [Migration("20220728192238_InitialCreate")]
+    [Migration("20220818191535_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,7 +121,6 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -151,11 +150,9 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalItem")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("UnitValue")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -184,7 +181,6 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -205,7 +201,6 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("UnitValue")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");

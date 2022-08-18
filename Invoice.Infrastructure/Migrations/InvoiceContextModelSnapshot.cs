@@ -119,7 +119,6 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Total")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -149,11 +148,9 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("TotalItem")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("UnitValue")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -182,7 +179,6 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Value")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -203,7 +199,6 @@ namespace InvoiceApi.Infrastructure.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("UnitValue")
-                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
