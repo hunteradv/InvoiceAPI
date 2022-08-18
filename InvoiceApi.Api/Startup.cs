@@ -58,6 +58,9 @@ namespace InvoiceApi.Api
 
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IContactRepository, ContactRepository>();
+
+            services.AddScoped<IClientService, ClientService>();
+            services.AddScoped<IClientRepository, ClientRepository>();
                 
 
             #endregion
