@@ -35,8 +35,9 @@ namespace InvoiceApi.Services.Services
             }
 
             var contact = _mapper.Map<Contact>(contactDTO);
+            contact.Validate();
 
-            var contactCreated = _contactRepository.Create(contact);
+            var contactCreated = await _contactRepository.Create(contact);
             return _mapper.Map<ContactDTO>(contactCreated);
         }
         public async Task<ContactDTO> Update(ContactDTO contactDTO)

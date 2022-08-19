@@ -29,13 +29,13 @@ namespace InvoiceApi.Api.Controllers
             try
             {
                 var clientDTO = _mapper.Map<ClientDTO>(clientViewModel);
-                var contactCreated = await _clientService.Create(clientDTO);
+                var clientCreated = await _clientService.Create(clientDTO);
 
                 return Ok(new ResultViewModel
                 {
                     Message = "Cliente criado com sucesso!",
                     Success = true,
-                    Data = null
+                    Data = clientCreated
                 });
             }
             catch (DomainException e)

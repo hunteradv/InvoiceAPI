@@ -2,8 +2,8 @@
 {
     public enum InvoiceStatus
     {
-        Error,
-        Processing,
-        Authorized
+        Error = 1,
+        Processing = 2,
+        Authorized = 3
     }
 }

@@ -3,6 +3,7 @@ using InvoiceApi.Core.Exceptions;
 using InvoiceApi.Domain.Enums;
 using InvoiceApi.Domain.Validators;
 using System;
+using System.Collections.Generic;
 
 namespace InvoiceApi.Domain.Entities
 {
@@ -20,6 +21,7 @@ namespace InvoiceApi.Domain.Entities
             ContactInfo = contactInfo;
             ContactType = contactType;
             ClientId = clientId;
+            _errors = new List<string>();
         }
 
         public void ChangeContactInfo(string contactInfo)
