@@ -47,5 +47,23 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        //[HttpPut("id")]
+        //[Route("/api/v1/client/update")]
+        //public async Task<IActionResult> Update()
+        //{
+        //    try
+        //    {
+                
+
+        //    }catch (DomainException e)
+        //    {
+        //        return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(500, Responses.ApplictationErrorMessage());
+        //    }
+        //}
     }
 }
