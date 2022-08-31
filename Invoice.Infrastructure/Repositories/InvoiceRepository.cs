@@ -51,7 +51,7 @@ namespace InvoiceApi.Infrastructure.Repositories
             return invoiceStatus;
         }
 
-        public async Task<List<Invoice>> SearchByTotal(decimal total)
+        public virtual async Task<List<Invoice>> SearchByTotal(decimal total)
         {
             var invoiceTotal = await _context.Invoices
                 .Where(x => x.Total.ToString().ToLower().Contains(total.ToString().ToLower()))
