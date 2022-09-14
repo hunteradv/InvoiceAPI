@@ -23,7 +23,7 @@ namespace InvoiceApi.Api.Controllers
         }
 
         [HttpPost]
-        [Route("/api/v1/client/create")]
+        [Route("/api/v1/address/create")]
         public async Task<IActionResult> Create([FromBody] CreateAddressViewModel addressViewModel)
         {
             try

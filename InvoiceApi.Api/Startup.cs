@@ -46,6 +46,8 @@ namespace InvoiceApi.Api
                 cfg.CreateMap<CreateContactViewModel, ContactDTO>().ReverseMap();
                 cfg.CreateMap<Client, ClientDTO>().ReverseMap();
                 cfg.CreateMap<CreateClientViewModel, ClientDTO>().ReverseMap();
+                cfg.CreateMap<Address, AddressDTO>().ReverseMap();
+                cfg.CreateMap<CreateAddressViewModel, AddressDTO>().ReverseMap();
             });
 
             services.AddSingleton(autoMapperConfig.CreateMapper());
@@ -63,7 +65,10 @@ namespace InvoiceApi.Api
 
             services.AddScoped<IClientService, ClientService>();
             services.AddScoped<IClientRepository, ClientRepository>();
-                
+
+            services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+
 
             #endregion
 
