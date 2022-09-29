@@ -12,7 +12,7 @@ namespace InvoiceApi.Infrastructure.Context
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-        //    optionsBuilder.UseSqlServer(@"Data Source=th3g3ntl3man\SQLEXPRESS;Initial Catalog=Invoice;Integrated Security=True;Connect Timeout=30;
+        //    optionsBuilder.UseSqlServer(@"Data Source=DEFALT\SQLEXPRESS;Initial Catalog=Invoice;Integrated Security=True;Connect Timeout=30;
         //    Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         //}
 

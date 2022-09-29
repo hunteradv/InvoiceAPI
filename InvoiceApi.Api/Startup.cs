@@ -58,7 +58,7 @@ namespace InvoiceApi.Api
             #region DI
 
             services.AddSingleton(d => Configuration);
-            services.AddDbContext<InvoiceContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:CONTACT_INVOICE"]), ServiceLifetime.Transient);
+            services.AddDbContext<InvoiceContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:INVOICE"]), ServiceLifetime.Transient);
 
             services.AddScoped<IContactService, ContactService>();
             services.AddScoped<IContactRepository, ContactRepository>();
