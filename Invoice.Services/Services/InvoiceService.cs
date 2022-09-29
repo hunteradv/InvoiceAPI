@@ -2,13 +2,11 @@
 using InvoiceApi.Core.Exceptions;
 using InvoiceApi.Domain.Entities;
 using InvoiceApi.Domain.Enums;
-using InvoiceApi.Infrastructure.Repositories;
+using InvoiceApi.Infrastructure.Interfaces;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace InvoiceApi.Services.Services
@@ -16,9 +14,9 @@ namespace InvoiceApi.Services.Services
     public class InvoiceService : IInvoiceService
     {
         private readonly IMapper _mapper;
-        private readonly InvoiceRepository _invoiceRepository;
+        private readonly IInvoiceRepository _invoiceRepository;
 
-        public InvoiceService(IMapper mapper, InvoiceRepository invoiceRepository)
+        public InvoiceService(IMapper mapper, IInvoiceRepository invoiceRepository)
         {
             _mapper = mapper;
             _invoiceRepository = invoiceRepository;
@@ -34,7 +32,7 @@ namespace InvoiceApi.Services.Services
             }
 
             var invoice = _mapper.Map<Invoice>(invoiceDTO);
-            var invoiceCreated = _invoiceRepository.Create(invoice);
+            var invoiceCreated = await _invoiceRepository.Create(invoice);
 
             return _mapper.Map<InvoiceDTO>(invoiceCreated);
         }
@@ -85,7 +83,7 @@ namespace InvoiceApi.Services.Services
             var allInvoices = await _invoiceRepository.GetByStatus(status);
 
             return _mapper.Map<List<InvoiceDTO>>(allInvoices);
-        }        
+        }
 
         public async Task<List<InvoiceDTO>> SearchByNumber(int number)
         {
@@ -99,6 +97,6 @@ namespace InvoiceApi.Services.Services
             var allInvoices = await _invoiceRepository.SearchByTotal(total);
 
             return _mapper.Map<List<InvoiceDTO>>(allInvoices);
-        }        
+        }
     }
 }

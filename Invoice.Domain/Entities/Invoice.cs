@@ -3,6 +3,7 @@ using InvoiceApi.Domain.Enums;
 using InvoiceApi.Domain.Validators;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace InvoiceApi.Domain.Entities
 {
@@ -23,13 +24,13 @@ namespace InvoiceApi.Domain.Entities
 
         }
 
-        public Invoice(int clientId, int serialNumber, int number, decimal total, InvoiceStatus status)
+        public Invoice(int clientId, int serialNumber, int number, InvoiceStatus status, decimal total)
         {
             ClientId = clientId;
             SerialNumber = serialNumber;
             Number = number;
-            Total = total;
             Status = status;
+            Total = total;
         }
 
         public override bool Validate()

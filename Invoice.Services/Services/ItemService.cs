@@ -16,6 +16,7 @@ namespace InvoiceApi.Services.Services
     {
         private readonly IMapper _mapper;
         private readonly ItemRepository _itemRepository;
+        private Invoice invoice;
 
         public ItemService(IMapper mapper, ItemRepository itemRepository)
         {
