@@ -17,11 +17,13 @@ namespace InvoiceApi.Services.Services
     {
         private readonly IMapper _mapper;
         private readonly IItemRepository _itemRepository;
+        private readonly IProductRepository _productRepository;
 
-        public ItemService(IMapper mapper, IItemRepository itemRepository)
+        public ItemService(IMapper mapper, IItemRepository itemRepository, IProductRepository productRepository)
         {
             _mapper = mapper;
             _itemRepository = itemRepository;
+            _productRepository = productRepository;
         }
 
         public async Task<ItemDTO> Create(ItemDTO itemDTO)
@@ -33,10 +35,21 @@ namespace InvoiceApi.Services.Services
                 throw new DomainException("Já existe um item com o id informado!");
             }
 
-            var item = _mapper.Map<Item>(itemDTO);
+            var product = await _productRepository.Get(itemDTO.ProductId);
+            itemDTO.UnitValue = product.UnitValue;
+
+            var item = _mapper.Map<Item>(itemDTO);            
             var itemCreated = await _itemRepository.Create(item);
 
             return _mapper.Map<ItemDTO>(itemCreated);
+        }
+
+        private static ItemDTO Calculate(ItemDTO itemDTO, Product product)
+        {
+            var item = itemDTO;
+            
+
+            return item;
         }
 
         public async Task<ItemDTO> Update(ItemDTO itemDTO)

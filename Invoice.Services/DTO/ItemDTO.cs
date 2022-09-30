@@ -12,7 +12,7 @@ namespace InvoiceApi.Services.DTO
         public string Description { get; set; }
         public decimal UnitValue { get; set; }
         public int Quantity { get; set; }
-        public decimal TotalItem => Quantity * UnitValue;
+        public decimal TotalItem => UnitValue * Quantity;
         public long InvoiceId { get; set; }
         public long ProductId { get; set; }
 

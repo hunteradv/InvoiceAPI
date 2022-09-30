@@ -10,9 +10,6 @@ namespace InvoiceApi.Api.ViewModels
         [MaxLength(80, ErrorMessage = "Descrição deve ter no máximo 80 caracteres")]
         public string Description { get; set; }
 
-        [Required(ErrorMessage = "Valor unitário é obrigatório")]
-        public decimal UnitValue { get; set; }
-
         [Required(ErrorMessage = "Quantidade é obrigatória")]
         public int Quantity { get; set; }
 
