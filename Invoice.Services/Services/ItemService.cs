@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InvoiceApi.Core.Exceptions;
 using InvoiceApi.Domain.Entities;
+using InvoiceApi.Infrastructure.Interfaces;
 using InvoiceApi.Infrastructure.Repositories;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
@@ -15,10 +16,9 @@ namespace InvoiceApi.Services.Services
     public class ItemService : IItemService
     {
         private readonly IMapper _mapper;
-        private readonly ItemRepository _itemRepository;
-        private Invoice invoice;
+        private readonly IItemRepository _itemRepository;
 
-        public ItemService(IMapper mapper, ItemRepository itemRepository)
+        public ItemService(IMapper mapper, IItemRepository itemRepository)
         {
             _mapper = mapper;
             _itemRepository = itemRepository;

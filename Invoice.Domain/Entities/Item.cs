@@ -11,7 +11,7 @@ namespace InvoiceApi.Domain.Entities
         public string Description { get; private set; }        
         public decimal UnitValue { get; private set; }        
         public int Quantity { get; private set; }        
-        public decimal TotalItem { get; private set; }
+        public decimal TotalItem => Quantity * UnitValue;
         public virtual Invoice Invoice { get; private set; }        
         public long InvoiceId { get; private set; }
         public virtual Product Product { get; private set; }        
@@ -23,12 +23,11 @@ namespace InvoiceApi.Domain.Entities
 
         }
 
-        public Item(string description, decimal unitValue, int quantity, decimal totalItem, int invoiceId, int productId)
+        public Item(string description, decimal unitValue, int quantity, int invoiceId, int productId)
         {
             Description = description;
             UnitValue = unitValue;
             Quantity = quantity;
-            TotalItem = totalItem;
             InvoiceId = invoiceId;
             ProductId = productId;
         }

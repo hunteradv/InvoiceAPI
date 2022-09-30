@@ -11,34 +11,34 @@ using System.Threading.Tasks;
 namespace InvoiceApi.Api.Controllers
 {
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ItemController : ControllerBase
     {
-        private readonly IProductService _productService;
+        private readonly IItemService _itemService;
         private readonly IMapper _mapper;
 
-        public ProductController(IProductService productService, IMapper mapper)
+        public ItemController(IItemService itemService, IMapper mapper)
         {
-            _productService = productService;
+            _itemService = itemService;
             _mapper = mapper;
         }
 
         [HttpPost]
-        [Route("api/v1/product/create")]
-        public async Task<IActionResult> Create([FromBody] CreateProductViewModel productViewModel)
+        [Route("api/v1/item/create")]
+        public async Task<IActionResult> Create([FromBody] CreateItemViewModel itemViewModel)
         {
             try
             {
-                var productDTO = _mapper.Map<ProductDTO>(productViewModel);
-                var productCreated = await _productService.Create(productDTO);
+                var itemDTO = _mapper.Map<ItemDTO>(itemViewModel);
+                var itemCreated = await _itemService.Create(itemDTO);
 
                 return Ok(new ResultViewModel
                 {
-                    Message = "Produto criado com sucesso!",
+                    Message = "Item criado com sucesso!",
                     Success = true,
                     Data = null
                 });
             }
-            catch(DomainException e)
+            catch (DomainException e)
             {
                 return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
             }
