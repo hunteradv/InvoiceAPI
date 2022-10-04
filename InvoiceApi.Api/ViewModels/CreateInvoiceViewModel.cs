@@ -18,8 +18,5 @@ namespace InvoiceApi.Api.ViewModels
 
         [Required(ErrorMessage = "O status não deve ser nulo")]
         public InvoiceStatus Status { get; set; }
-
-        [Required(ErrorMessage = "O valor total da nota não deve ser nulo")]
-        public decimal Total { get; set; }       
     }
 }

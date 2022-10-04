@@ -53,9 +53,9 @@ namespace InvoiceApi.Services.Services
             var client = _mapper.Map<Client>(clientDTO);
             client.Validate();
 
-            var clientCreated = _clientRepository.Create(client);
+            var clientUpdated = await _clientRepository.Update(client);
 
-            return _mapper.Map<ClientDTO>(clientCreated);
+            return _mapper.Map<ClientDTO>(clientUpdated);
         }
 
         public async Task Remove(long id)

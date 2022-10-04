@@ -1,4 +1,5 @@
-﻿using InvoiceApi.Domain.Enums;
+﻿using InvoiceApi.Domain.Entities;
+using InvoiceApi.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,7 @@ namespace InvoiceApi.Services.DTO
         public long Id { get; set; }
         public long ClientId { get; set; }
         public int SerialNumber { get; set; }
-        public int Number { get; set; }
-       
+        public int Number { get; set; }       
         public InvoiceStatus Status { get; set; }
         public decimal Total { get; set; }
 

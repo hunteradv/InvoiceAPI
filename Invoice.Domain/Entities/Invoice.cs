@@ -14,7 +14,7 @@ namespace InvoiceApi.Domain.Entities
         public int SerialNumber { get; private set; }        
         public int Number { get; private set; }
         public InvoiceStatus Status { get; private set; }
-        public decimal Total { get; private set; }
+        public decimal Total { get; private set; }       
         public virtual List<Payment> Payments { get; private set; }
         public virtual List<Item> Items { get; private set; }
 

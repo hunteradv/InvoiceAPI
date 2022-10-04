@@ -44,8 +44,11 @@ namespace InvoiceApi.Api
             {
                 cfg.CreateMap<Contact, ContactDTO>().ReverseMap();
                 cfg.CreateMap<CreateContactViewModel, ContactDTO>().ReverseMap();
+
                 cfg.CreateMap<Client, ClientDTO>().ReverseMap();
                 cfg.CreateMap<CreateClientViewModel, ClientDTO>().ReverseMap();
+                cfg.CreateMap<UpdateClientViewModel, ClientDTO>().ReverseMap();
+
                 cfg.CreateMap<Address, AddressDTO>().ReverseMap();
                 cfg.CreateMap<CreateAddressViewModel, AddressDTO>().ReverseMap();
                 cfg.CreateMap<Invoice, InvoiceDTO>().ReverseMap();

@@ -48,22 +48,30 @@ namespace InvoiceApi.Api.Controllers
             }
         }
 
-        //[HttpPut("id")]
-        //[Route("/api/v1/client/update")]
-        //public async Task<IActionResult> Update()
-        //{
-        //    try
-        //    {
-                
+        [HttpPut]
+        [Route("/api/v1/client/update")]
+        public async Task<IActionResult> Update([FromBody] UpdateClientViewModel clientViewModel)
+        {
+            try
+            {
+                var clientDTO = _mapper.Map<ClientDTO>(clientViewModel);
+                var clientUpdated = await _clientService.Update(clientDTO);
 
-        //    }catch (DomainException e)
-        //    {
-        //        return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(500, Responses.ApplictationErrorMessage());
-        //    }
-        //}
+                return Ok(new ResultViewModel
+                {
+                    Message = "Cliente atualizado com sucesso!",
+                    Success = true,
+                    Data = clientUpdated
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

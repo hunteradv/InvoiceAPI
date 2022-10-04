@@ -15,11 +15,13 @@ namespace InvoiceApi.Services.Services
     {
         private readonly IMapper _mapper;
         private readonly IInvoiceRepository _invoiceRepository;
+        private readonly IItemRepository _itemRepository;
 
-        public InvoiceService(IMapper mapper, IInvoiceRepository invoiceRepository)
+        public InvoiceService(IMapper mapper, IInvoiceRepository invoiceRepository, IItemRepository itemRepository)
         {
             _mapper = mapper;
             _invoiceRepository = invoiceRepository;
+            _itemRepository = itemRepository;
         }
 
         public async Task<InvoiceDTO> Create(InvoiceDTO invoiceDTO)
@@ -32,6 +34,8 @@ namespace InvoiceApi.Services.Services
             }
 
             var invoice = _mapper.Map<Invoice>(invoiceDTO);
+            invoice.Validate();
+
             var invoiceCreated = await _invoiceRepository.Create(invoice);
 
             return _mapper.Map<InvoiceDTO>(invoiceCreated);
@@ -47,6 +51,8 @@ namespace InvoiceApi.Services.Services
             }
 
             var invoice = _mapper.Map<Invoice>(invoiceDTO);
+            invoice.Validate();
+
             var invoiceUpdated = await _invoiceRepository.Update(invoice);
 
             return _mapper.Map<InvoiceDTO>(invoiceUpdated);
