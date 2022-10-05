@@ -5,6 +5,7 @@ using InvoiceApi.Core.Exceptions;
 using InvoiceApi.Infrastructure.Context;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
+using InvoiceApi.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -68,6 +69,31 @@ namespace InvoiceApi.Api.Controllers
             catch (DomainException e)
             {
                 return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpDelete]
+        [Route("/api/v1/invoice/remove/{id}")]
+        public async Task<IActionResult> Remove(long id)
+        {
+            try
+            {
+                await _invoiceService.Remove(id);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Nota fiscal removida com sucesso!",
+                    Success = true,
+                    Data = null
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message));
             }
             catch (Exception)
             {

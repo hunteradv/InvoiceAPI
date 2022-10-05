@@ -73,5 +73,30 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpDelete]
+        [Route("/api/v1/client/remove/{id}")]
+        public async Task<IActionResult> Remove(long id)
+        {
+            try
+            {
+                await _clientService.Remove(id);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Cliente removido com sucesso!",
+                    Success = true,
+                    Data = null
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

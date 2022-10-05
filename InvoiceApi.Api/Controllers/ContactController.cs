@@ -4,6 +4,7 @@ using InvoiceApi.Api.ViewModels;
 using InvoiceApi.Core.Exceptions;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
+using InvoiceApi.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -67,6 +68,31 @@ namespace InvoiceApi.Api.Controllers
             catch (DomainException e)
             {
                 return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpDelete]
+        [Route("/api/v1/contact/remove/{id}")]
+        public async Task<IActionResult> Remove(long id)
+        {
+            try
+            {
+                await _contactService.Remove(id);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Contato removido com sucesso!",
+                    Success = true,
+                    Data = null
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message));
             }
             catch (Exception)
             {
