@@ -134,5 +134,30 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/address/get-all")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var allAddresses = await _addressService.Get();
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Endereços encontrados com sucesso!",
+                    Success = true,
+                    Data = allAddresses
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

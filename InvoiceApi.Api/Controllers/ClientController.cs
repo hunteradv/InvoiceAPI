@@ -4,6 +4,7 @@ using InvoiceApi.Api.ViewModels;
 using InvoiceApi.Core.Exceptions;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
+using InvoiceApi.Services.Services;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -122,6 +123,31 @@ namespace InvoiceApi.Api.Controllers
                     Message = "Cliente encontrado com sucesso!",
                     Success = true,
                     Data = client
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/client/get-all")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var allClients = await _clientService.Get();
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Clientes encontrados com sucesso!",
+                    Success = true,
+                    Data = allClients
                 });
             }
             catch (DomainException e)

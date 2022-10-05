@@ -135,5 +135,30 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/item/get-all")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var allItems = await _itemService.Get();
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Itens encontrados com sucesso!",
+                    Success = true,
+                    Data = allItems
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

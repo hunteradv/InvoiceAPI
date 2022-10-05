@@ -135,5 +135,30 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/invoice/get-all")]
+        public async Task<IActionResult> Get()
+        {
+            try
+            {
+                var allInvoices = await _invoiceService.Get();
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Notas fiscais encontradas com sucesso!",
+                    Success = true,
+                    Data = allInvoices
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }
