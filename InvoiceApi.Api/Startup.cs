@@ -44,6 +44,7 @@ namespace InvoiceApi.Api
             {
                 cfg.CreateMap<Contact, ContactDTO>().ReverseMap();
                 cfg.CreateMap<CreateContactViewModel, ContactDTO>().ReverseMap();
+                cfg.CreateMap<UpdateContactViewModel, ContactDTO>().ReverseMap();
 
                 cfg.CreateMap<Client, ClientDTO>().ReverseMap();
                 cfg.CreateMap<CreateClientViewModel, ClientDTO>().ReverseMap();
@@ -51,14 +52,23 @@ namespace InvoiceApi.Api
 
                 cfg.CreateMap<Address, AddressDTO>().ReverseMap();
                 cfg.CreateMap<CreateAddressViewModel, AddressDTO>().ReverseMap();
+                cfg.CreateMap<UpdateAddressViewModel, AddressDTO>().ReverseMap();
+
                 cfg.CreateMap<Invoice, InvoiceDTO>().ReverseMap();
                 cfg.CreateMap<CreateInvoiceViewModel, InvoiceDTO>().ReverseMap();
+                cfg.CreateMap<UpdateInvoiceViewModel, InvoiceDTO>().ReverseMap();
+
                 cfg.CreateMap<Payment, PaymentDTO>().ReverseMap();
                 cfg.CreateMap<CreatePaymentViewModel, PaymentDTO>().ReverseMap();
+                cfg.CreateMap<UpdatePaymentViewModel, PaymentDTO>().ReverseMap();
+
                 cfg.CreateMap<Product, ProductDTO>().ReverseMap();
                 cfg.CreateMap<CreateProductViewModel, ProductDTO>().ReverseMap();
+                cfg.CreateMap<UpdateProductViewModel, ProductDTO>().ReverseMap();
+
                 cfg.CreateMap<Item, ItemDTO>().ReverseMap();
                 cfg.CreateMap<CreateItemViewModel, ItemDTO>().ReverseMap();
+                cfg.CreateMap<UpdateItemViewModel, ItemDTO>().ReverseMap();
             });
 
             services.AddSingleton(autoMapperConfig.CreateMapper());

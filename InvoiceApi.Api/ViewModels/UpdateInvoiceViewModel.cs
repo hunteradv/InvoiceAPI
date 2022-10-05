@@ -1,12 +1,13 @@
-﻿using InvoiceApi.Domain.Entities;
-using InvoiceApi.Domain.Enums;
-using System.Collections.Generic;
+﻿using InvoiceApi.Domain.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace InvoiceApi.Api.ViewModels
 {
-    public class CreateInvoiceViewModel
+    public class UpdateInvoiceViewModel
     {
+        [Required(ErrorMessage = "Id não pode ser vazio")]
+        public long Id { get; set; }
+
         [Required(ErrorMessage = "O id do cliente não deve ser nulo")]
         public long ClientId { get; set; }
 
@@ -19,7 +20,7 @@ namespace InvoiceApi.Api.ViewModels
         [Required(ErrorMessage = "O status não deve ser nulo")]
         public InvoiceStatus Status { get; set; }
 
-        [Required(ErrorMessage = "O total não deve ser nulo")]
+        [Required(ErrorMessage = "O total não pode ser vazio")]
         public decimal Total { get; set; }
     }
 }

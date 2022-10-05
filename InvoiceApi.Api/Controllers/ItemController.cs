@@ -35,7 +35,33 @@ namespace InvoiceApi.Api.Controllers
                 {
                     Message = "Item criado com sucesso!",
                     Success = true,
-                    Data = null
+                    Data = itemCreated
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpPut]
+        [Route("api/v1/item/update")]
+        public async Task<IActionResult> Update([FromBody] UpdateItemViewModel itemViewModel)
+        {
+            try
+            {
+                var itemDTO = _mapper.Map<ItemDTO>(itemViewModel);
+                var itemUpdated = await _itemService.Update(itemDTO);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Item atualizado com sucesso!",
+                    Success = true,
+                    Data = itemUpdated
                 });
             }
             catch (DomainException e)

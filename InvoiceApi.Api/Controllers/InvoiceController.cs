@@ -7,6 +7,7 @@ using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace InvoiceApi.Api.Controllers
@@ -36,6 +37,32 @@ namespace InvoiceApi.Api.Controllers
                     Message = "Nota fiscal criada com sucesso!",
                     Success = true,
                     Data = null
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpPut]
+        [Route("/api/v1/invoice/update")]
+        public async Task<IActionResult> Update([FromBody] UpdateInvoiceViewModel invoiceViewModel)
+        {
+            try
+            {
+                var invoiceDTO = _mapper.Map<InvoiceDTO>(invoiceViewModel);
+                var invoiceUpdated = await _invoiceService.Update(invoiceDTO);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Nota fiscal atualizada com sucesso!",
+                    Success = true,
+                    Data = invoiceUpdated
                 });
             }
             catch (DomainException e)

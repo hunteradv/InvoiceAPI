@@ -31,6 +31,7 @@ namespace InvoiceApi.Domain.Entities
             Number = number;
             Status = status;
             Total = total;
+            _errors = new List<string>();
         }
 
         public override bool Validate()

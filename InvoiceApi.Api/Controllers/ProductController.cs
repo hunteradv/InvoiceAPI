@@ -47,5 +47,31 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpPut]
+        [Route("api/v1/product/update")]
+        public async Task<IActionResult> Update([FromBody] UpdateProductViewModel productViewModel)
+        {
+            try
+            {
+                var productDTO = _mapper.Map<ProductDTO>(productViewModel);
+                var productUpdated = await _productService.Update(productDTO);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Produto atualizado com sucesso!",
+                    Success = true,
+                    Data = productUpdated
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

@@ -47,5 +47,31 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpPut]
+        [Route("/api/v1/address/update")]
+        public async Task<IActionResult> Update([FromBody] UpdateAddressViewModel addressViewModel)
+        {
+            try
+            {
+                var addressDTO = _mapper.Map<AddressDTO>(addressViewModel);
+                var addressUpdated = await _addressService.Update(addressDTO);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Endereço atualizado com sucesso!",
+                    Success = true,
+                    Data = addressUpdated
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

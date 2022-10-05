@@ -47,5 +47,31 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpPut]
+        [Route("/api/v1/contact/update")]
+        public async Task<IActionResult> Update([FromBody] UpdateContactViewModel contactViewModel)
+        {
+            try
+            {
+                var contactDTO = _mapper.Map<ContactDTO>(contactViewModel);
+                var contactUpdated = await _contactService.Update(contactDTO);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Contato atualizado com sucesso!",
+                    Success = true,
+                    Data = contactUpdated
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

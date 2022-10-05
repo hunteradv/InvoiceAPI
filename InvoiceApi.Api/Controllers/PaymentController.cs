@@ -35,7 +35,33 @@ namespace InvoiceApi.Api.Controllers
                 {
                     Message = "Pagamento criado com sucesso!",
                     Success = true,
-                    Data = null
+                    Data = paymentCreated
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpPut]
+        [Route("api/v1/payment/update")]
+        public async Task<IActionResult> Update([FromBody] UpdatePaymentViewModel paymentViewModel)
+        {
+            try
+            {
+                var paymentDTO = _mapper.Map<PaymentDTO>(paymentViewModel);
+                var paymentUpdated = await _paymentService.Update(paymentDTO);
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Pagamento atualizado com sucesso!",
+                    Success = true,
+                    Data = paymentUpdated
                 });
             }
             catch (DomainException e)

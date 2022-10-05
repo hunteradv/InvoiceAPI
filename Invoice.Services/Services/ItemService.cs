@@ -37,19 +37,12 @@ namespace InvoiceApi.Services.Services
 
             var product = await _productRepository.Get(itemDTO.ProductId);
             itemDTO.UnitValue = product.UnitValue;
+            itemDTO.Description = product.Name;
 
             var item = _mapper.Map<Item>(itemDTO);            
             var itemCreated = await _itemRepository.Create(item);
 
             return _mapper.Map<ItemDTO>(itemCreated);
-        }
-
-        private static ItemDTO Calculate(ItemDTO itemDTO, Product product)
-        {
-            var item = itemDTO;
-            
-
-            return item;
         }
 
         public async Task<ItemDTO> Update(ItemDTO itemDTO)
