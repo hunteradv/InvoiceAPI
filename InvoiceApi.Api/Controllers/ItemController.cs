@@ -100,5 +100,40 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/item/get/{id}")]
+        public async Task<IActionResult> Get(long id)
+        {
+            try
+            {
+                var item = await _itemService.Get(id);
+
+                if (item == null)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum item foi encontrado com o Id informado",
+                        Success = true,
+                        Data = item
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Item encontrado com sucesso!",
+                    Success = true,
+                    Data = item
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

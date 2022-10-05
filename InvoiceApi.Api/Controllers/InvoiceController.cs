@@ -100,5 +100,40 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/invoice/get/{id}")]
+        public async Task<IActionResult> Get(long id)
+        {
+            try
+            {
+                var invoice = await _invoiceService.Get(id);
+
+                if (invoice == null)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhuma nota fiscal foi encontrada com o Id informado",
+                        Success = true,
+                        Data = invoice
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Nota fiscal encontrada com sucesso!",
+                    Success = true,
+                    Data = invoice
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

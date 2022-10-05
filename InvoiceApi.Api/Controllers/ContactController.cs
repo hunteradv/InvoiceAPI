@@ -99,5 +99,40 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/contact/get/{id}")]
+        public async Task<IActionResult> Get(long id)
+        {
+            try
+            {
+                var contact = await _contactService.Get(id);
+
+                if (contact == null)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum contato foi encontrado com o Id informado",
+                        Success = true,
+                        Data = contact
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Contato encontrado com sucesso!",
+                    Success = true,
+                    Data = contact
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }
