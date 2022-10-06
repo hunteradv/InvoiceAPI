@@ -2,6 +2,7 @@
 using InvoiceApi.Api.Utilities;
 using InvoiceApi.Api.ViewModels;
 using InvoiceApi.Core.Exceptions;
+using InvoiceApi.Domain.Enums;
 using InvoiceApi.Infrastructure.Context;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
@@ -147,6 +148,146 @@ namespace InvoiceApi.Api.Controllers
                 return Ok(new ResultViewModel
                 {
                     Message = "Notas fiscais encontradas com sucesso!",
+                    Success = true,
+                    Data = allInvoices
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/invoice/get-by-serial-number")]
+        public async Task<IActionResult> GetBySerialNumber([FromQuery] int serialNumber)
+        {
+            try
+            {
+                var allInvoices = await _invoiceService.GetBySerialNumber(serialNumber);
+
+                if (allInvoices.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhuma nota fiscal foi encontrada com o número de série informado.",
+                        Success = true,
+                        Data = allInvoices
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Nota(s) fiscal(is) encontrada(s) com sucesso!",
+                    Success = true,
+                    Data = allInvoices
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/invoice/get-by-status")]
+        public async Task<IActionResult> GetByStatus([FromQuery] InvoiceStatus status)
+        {
+            try
+            {
+                var allInvoices = await _invoiceService.GetByStatus(status);
+
+                if (allInvoices.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhuma nota fiscal foi encontrada com o status informado.",
+                        Success = true,
+                        Data = allInvoices
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Nota(s) fiscal(is) encontrada(s) com sucesso!",
+                    Success = true,
+                    Data = allInvoices
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/invoice/search-by-number")]
+        public async Task<IActionResult> SearchByNumber([FromQuery] int number)
+        {
+            try
+            {
+                var allInvoices = await _invoiceService.SearchByNumber(number);
+
+                if (allInvoices.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhuma nota fiscal foi encontrada com o número informado.",
+                        Success = true,
+                        Data = allInvoices
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Nota(s) fiscal(is) encontrada(s) com sucesso!",
+                    Success = true,
+                    Data = allInvoices
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/invoice/search-by-total")]
+        public async Task<IActionResult> SearchByTotal([FromQuery] decimal total)
+        {
+            try
+            {
+                var allInvoices = await _invoiceService.SearchByTotal(total);
+
+                if (allInvoices.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhuma nota fiscal foi encontrada com o total informado.",
+                        Success = true,
+                        Data = allInvoices
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Nota(s) fiscal(is) encontrada(s) com sucesso!",
                     Success = true,
                     Data = allInvoices
                 });

@@ -159,5 +159,110 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/item/search-by-payment-description")]
+        public async Task<IActionResult> SearchByDescription([FromQuery] string description)
+        {
+            try
+            {
+                var allPayments = await _paymentService.SearchByDescription(description);
+
+                if (allPayments.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum pagamento foi encontrado com a descrição informada.",
+                        Success = true,
+                        Data = allPayments
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Pagamentos(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allPayments
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/payment/search-by-payment-type")]
+        public async Task<IActionResult> SearchByPaymentType([FromQuery] string paymentType)
+        {
+            try
+            {
+                var allPayments = await _paymentService.SearchByPaymentType(paymentType);
+
+                if (allPayments.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum pagamento foi encontrado com o tipo informado.",
+                        Success = true,
+                        Data = allPayments
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Pagamentos(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allPayments
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/payment/search-by-value")]
+        public async Task<IActionResult> SearchByValue([FromQuery] decimal value)
+        {
+            try
+            {
+                var allPayments = await _paymentService.SearchByValue(value);
+
+                if (allPayments.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum pagamento foi encontrado com o tipo informado.",
+                        Success = true,
+                        Data = allPayments
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Pagamentos(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allPayments
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

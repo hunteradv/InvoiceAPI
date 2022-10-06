@@ -160,5 +160,75 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/item/search-by-item-description")]
+        public async Task<IActionResult> SearchByDescription([FromQuery] string description)
+        {
+            try
+            {
+                var allItems = await _itemService.SearchByDescription(description);
+
+                if (allItems.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum item foi encontrado com a descrição informada.",
+                        Success = true,
+                        Data = allItems
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Item(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allItems
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/item/search-by-total-item")]
+        public async Task<IActionResult> SearchByTotalItem([FromQuery] decimal totalItem)
+        {
+            try
+            {
+                var allItems = await _itemService.SearchByTotalItem(totalItem);
+
+                if (allItems.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum item foi encontrado com o valor total informado.",
+                        Success = true,
+                        Data = allItems
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Item(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allItems
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

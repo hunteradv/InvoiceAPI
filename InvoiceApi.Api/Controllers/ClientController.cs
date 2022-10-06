@@ -159,5 +159,75 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/client/search-by-first-name")]
+        public async Task<IActionResult> SearchByFirstName([FromQuery] string firstName)
+        {
+            try
+            {
+                var allClients = await _clientService.SearchByFirstName(firstName);
+
+                if (allClients.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum cliente foi encontrado com o primeiro nome informado.",
+                        Success = true,
+                        Data = allClients
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Cliente encontrado com sucesso!",
+                    Success = true,
+                    Data = allClients
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/client/search-by-last-name")]
+        public async Task<IActionResult> SearchByLastName([FromQuery] string lastName)
+        {
+            try
+            {
+                var allClients = await _clientService.SearchByLastName(lastName);
+
+                if (allClients.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum cliente foi encontrado com o sobrenome informado.",
+                        Success = true,
+                        Data = allClients
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Cliente encontrado com sucesso!",
+                    Success = true,
+                    Data = allClients
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

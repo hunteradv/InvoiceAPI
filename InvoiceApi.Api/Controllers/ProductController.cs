@@ -159,5 +159,75 @@ namespace InvoiceApi.Api.Controllers
                 return StatusCode(500, Responses.ApplictationErrorMessage());
             }
         }
+
+        [HttpGet]
+        [Route("/api/v1/product/search-by-name")]
+        public async Task<IActionResult> SearchByName([FromQuery] string name)
+        {
+            try
+            {
+                var allProducts = await _productService.SearchByName(name);
+
+                if (allProducts.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum produto foi encontrado com o tipo informado.",
+                        Success = true,
+                        Data = allProducts
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Produto(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allProducts
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/product/search-by-unit-value")]
+        public async Task<IActionResult> SearchByUnitValue([FromQuery] decimal unitValue)
+        {
+            try
+            {
+                var allProducts = await _productService.SearchByUnitValue(unitValue);
+
+                if (allProducts.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum produto foi encontrado com o tipo informado.",
+                        Success = true,
+                        Data = allProducts
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Produto(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allProducts
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
     }
 }

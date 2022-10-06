@@ -136,7 +136,7 @@ namespace InvoiceApi.Api.Controllers
         }
 
         [HttpGet]
-        [Route("/api/v1/address/get-all")]
+        [Route("/api/v1/address/getAll")]
         public async Task<IActionResult> Get()
         {
             try
@@ -146,6 +146,111 @@ namespace InvoiceApi.Api.Controllers
                 return Ok(new ResultViewModel
                 {
                     Message = "Endereços encontrados com sucesso!",
+                    Success = true,
+                    Data = allAddresses
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/address/search-by-city")]
+        public async Task<IActionResult> SearchByCity([FromQuery] string city)
+        {
+            try
+            {
+                var allAddresses = await _addressService.SearchByCity(city);
+
+                if (allAddresses.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum endereço foi encontrado com a cidade informada.",
+                        Success = true,
+                        Data = allAddresses
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Endereço(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allAddresses
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/address/search-by-state")]
+        public async Task<IActionResult> SearchByState([FromQuery] string state)
+        {
+            try
+            {
+                var allAddresses = await _addressService.SearchByState(state);
+
+                if (allAddresses.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum endereço foi encontrado com o estado informado.",
+                        Success = true,
+                        Data = allAddresses
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Endereço(s) encontrado(s) com sucesso!",
+                    Success = true,
+                    Data = allAddresses
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/address/search-by-country")]
+        public async Task<IActionResult> SearchByCountry([FromQuery] string country)
+        {
+            try
+            {
+                var allAddresses = await _addressService.SearchByCity(country);
+
+                if (allAddresses.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum endereço foi encontrado com o país informado.",
+                        Success = true,
+                        Data = allAddresses
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Endereço encontrado com sucesso!",
                     Success = true,
                     Data = allAddresses
                 });

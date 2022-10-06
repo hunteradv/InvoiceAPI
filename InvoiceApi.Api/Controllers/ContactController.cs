@@ -2,6 +2,7 @@
 using InvoiceApi.Api.Utilities;
 using InvoiceApi.Api.ViewModels;
 using InvoiceApi.Core.Exceptions;
+using InvoiceApi.Domain.Enums;
 using InvoiceApi.Services.DTO;
 using InvoiceApi.Services.Interfaces;
 using InvoiceApi.Services.Services;
@@ -136,7 +137,7 @@ namespace InvoiceApi.Api.Controllers
         }
 
         [HttpGet]
-        [Route("/api/v1/address/get-all")]
+        [Route("/api/v1/contact/get-all")]
         public async Task<IActionResult> Get()
         {
             try
@@ -146,6 +147,76 @@ namespace InvoiceApi.Api.Controllers
                 return Ok(new ResultViewModel
                 {
                     Message = "Contatos encontrados com sucesso!",
+                    Success = true,
+                    Data = allContacts
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/contact/get-by-contact-type")]
+        public async Task<IActionResult> GetByContactType([FromQuery] ContactType contactType)
+        {
+            try
+            {
+                var allContacts = await _contactService.GetByContactType(contactType);
+
+                if (allContacts.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum contato foi encontrado com o tipo informado.",
+                        Success = true,
+                        Data = allContacts
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Contato encontrado com sucesso!",
+                    Success = true,
+                    Data = allContacts
+                });
+            }
+            catch (DomainException e)
+            {
+                return BadRequest(Responses.DomainErrorMessage(e.Message, e.Errors));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, Responses.ApplictationErrorMessage());
+            }
+        }
+
+        [HttpGet]
+        [Route("/api/v1/contact/get-by-contact-info")]
+        public async Task<IActionResult> SearchByContactInfo([FromQuery] string contactInfo)
+        {
+            try
+            {
+                var allContacts = await _contactService.SearchByContactInfo(contactInfo);
+
+                if (allContacts.Count == 0)
+                {
+                    return Ok(new ResultViewModel
+                    {
+                        Message = "Nenhum contato foi encontrado.",
+                        Success = true,
+                        Data = allContacts
+                    });
+                }
+
+                return Ok(new ResultViewModel
+                {
+                    Message = "Contato(s) encontrado(s) com sucesso!",
                     Success = true,
                     Data = allContacts
                 });
